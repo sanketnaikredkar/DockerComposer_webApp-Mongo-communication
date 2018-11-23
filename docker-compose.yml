@@ -1,0 +1,17 @@
+version: '3.4'
+
+services:
+  dotnetcoreapi_service:
+    image: microsoft/dotnet:aspnetcore-runtime
+    build:
+      context: .
+      dockerfile: SqliteNotnetCore\Dockerfile
+    ports:
+      - "8080:80"
+    depends_on:
+      - mongo_service
+
+  mongo_service:
+    image: mongo
+    ports:
+      - "28018:27017"
